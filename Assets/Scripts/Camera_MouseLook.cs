@@ -8,7 +8,6 @@ public class Camera_MouseLook : MonoBehaviour {
 	Transform cam_trans;
 	public float sensitivity = 5.0f;
 	public float smoothing = 2.0f;
-	public float viewRange = 50.0f;
 	GameObject character;
 	// Use this for initialization
 	void Start () {
@@ -18,25 +17,18 @@ public class Camera_MouseLook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		var mouse_delta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")); // change in mouse
 		mouse_delta = Vector2.Scale (mouse_delta, new Vector2 (sensitivity * smoothing, sensitivity * smoothing));
 		smoothV.x = Mathf.Lerp (smoothV.x, mouse_delta.x, 1f / smoothing);
 		smoothV.y = Mathf.Lerp (smoothV.y, mouse_delta.y, 1f / smoothing);
-		mouseLook += smoothV; 
-
-		cam_trans.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right); // rotation around x axis
-		cam_trans.localEulerAngles = new Vector3 (Mathf.Clamp (cam_trans.localEulerAngles.x, -viewRange, viewRange), 0, 0);
-		print (cam_trans.localEulerAngles.x);
-		if (cam_trans.localEulerAngles.x > viewRange) {
-			cam_trans.localEulerAngles = new Vector3 (viewRange, 0, 0);
-		} else if (cam_trans.localEulerAngles.x < -viewRange) {
-			cam_trans.localEulerAngles = new Vector3 (-viewRange, 0, 0);
+		if (mouseLook.y > 67.0f) {
+			mouseLook.y = 66.999f;
+		} else if (mouseLook.y < -67.0f) {
+			mouseLook.y = -66.999f;
+		} else {
+			mouseLook += smoothV; 
 		}
-
-
-
-
+		cam_trans.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right); // rotation around x axis
 		character.transform.localRotation = Quaternion.AngleAxis (mouseLook.x, character.transform.up);
 	}
 
