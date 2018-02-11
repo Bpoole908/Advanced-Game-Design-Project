@@ -36,7 +36,6 @@ public class Character_Controller : MonoBehaviour {
 		foreach (ContactPoint contact in collision.contacts){
 
 			if (Vector3.Angle(contact.normal, Vector3.up) < maxSlope){
-				print("true");
 				grounded = true;
 			}
 		}
@@ -44,6 +43,5 @@ public class Character_Controller : MonoBehaviour {
 
 	void OnCollisionExit (Collision collision){
 		grounded = false;
-		print ("false");
 	}
 }
