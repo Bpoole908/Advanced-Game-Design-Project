@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
 
 	public Camera fpsCam;
 	public ParticleSystem MuzzleFalsh;
+	public GameObject impactEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,8 @@ public class Gun : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast (fpsCam.transform.position, fpsCam.transform.forward, out hit, range)) {
 			print (hit.transform.name);
+			GameObject impact = Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));
+			Destroy (impact, 1f);
 		}
 	}
 }
