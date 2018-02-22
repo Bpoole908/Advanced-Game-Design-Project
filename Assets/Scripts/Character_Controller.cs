@@ -34,12 +34,14 @@ public class Character_Controller : MonoBehaviour {
 		foreach (ContactPoint contact in collision.contacts){
 
 			if (Vector3.Angle(contact.normal, Vector3.up) < maxSlope){
+				print ("Can Jump");
 				grounded = true;
 			}
 		}
 	}
 
 	void OnCollisionExit (Collision collision){
+		print("Can't Jump");
 		grounded = false;
 	}
 }
