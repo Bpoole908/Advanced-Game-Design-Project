@@ -19,7 +19,7 @@ public class Camera_MouseLook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GlobalVars.Instance._enable) {
+		if (PauseSingle.Instance._enable) {
 			var mouse_delta = new Vector2 (Input.GetAxisRaw ("Mouse X"), Input.GetAxisRaw ("Mouse Y")); // change in mouse
 			mouse_delta = Vector2.Scale (mouse_delta, new Vector2 (sensitivity * smoothing, sensitivity * smoothing));
 			smoothV.x = Mathf.Lerp (smoothV.x, mouse_delta.x, 1f / smoothing);
@@ -32,7 +32,9 @@ public class Camera_MouseLook : MonoBehaviour {
 				mouseLook += smoothV; 
 			}
 			cam_trans.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right); // rotation around x axis
+			//print (character.transform.localRotation);
 			character.transform.localRotation = Quaternion.AngleAxis (mouseLook.x, character.transform.up);
+			//print (character.transform.localRotation);
 		}
 	}
 

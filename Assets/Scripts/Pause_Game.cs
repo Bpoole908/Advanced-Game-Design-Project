@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Pause_Game : MonoBehaviour {
@@ -18,16 +19,26 @@ public class Pause_Game : MonoBehaviour {
 	}
 
 	public void Pause() {
-		if (canvas.gameObject.activeInHierarchy == false) {
-			canvas.gameObject.SetActive (true);
-			GlobalVars.Instance._enable = false;
-			Time.timeScale = 0;
-			Cursor.lockState = CursorLockMode.None;
-		} else {
-			canvas.gameObject.SetActive (false);
-			GlobalVars.Instance._enable = true;
-			Cursor.lockState = CursorLockMode.Locked;
-			Time.timeScale = 1;
+		if (canvas) {
+			if (canvas.gameObject.activeInHierarchy == false) {
+				canvas.gameObject.SetActive (true);
+				PauseSingle.Instance._enable = false;
+				Time.timeScale = 0;
+				Cursor.lockState = CursorLockMode.None;
+			} else {
+				canvas.gameObject.SetActive (false);
+				PauseSingle.Instance._enable = true;
+				Cursor.lockState = CursorLockMode.Locked;
+				Time.timeScale = 1;
+			}
 		}
+	}
+
+	public void Restart(){
+		canvas.gameObject.SetActive (false);
+		PauseSingle.Instance._enable = true;
+		Cursor.lockState = CursorLockMode.Locked;
+		Time.timeScale = 1;
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Character_Controller : MonoBehaviour {
+	[HideInInspector] public GameObject controller;
+	[HideInInspector] public GlobalVars target;
 	public float speed = 10.0F;
 	public float jumpVelocity = 550.0f;
 	public float maxSlope = 60;
@@ -13,6 +16,8 @@ public class Character_Controller : MonoBehaviour {
 		//Turns off cursor on screen and locks inside game window
 		Cursor.lockState = CursorLockMode.Locked;
 		rb = gameObject.GetComponent<Rigidbody> ();
+		controller = GameObject.Find ("GameController");
+		target = controller.GetComponent<GlobalVars> ();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +34,18 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 	}
+
+	void OnCollisionEnter(Collision collision){
+		if (collision.transform.tag == "Restart") {
+			int scene = SceneManager.GetActiveScene().buildIndex;
+			SceneManager.LoadScene(scene, LoadSceneMode.Single);
+		}
+
+		// CHANGE to scene 2 or main menue
+		if (collision.transform.tag == "Finish" && target.targetCount == 1) {
+			StartCoroutine (ExecuteAfterTime (3));
+		}
+	}
 	 //Detect if you on the ground to jump
 	 void OnCollisionStay (Collision collision){
 		foreach (ContactPoint contact in collision.contacts){
@@ -44,4 +61,12 @@ public class Character_Controller : MonoBehaviour {
 		print("Can't Jump");
 		grounded = false;
 	}
+
+	IEnumerator ExecuteAfterTime(float time){
+		yield return new WaitForSeconds (time);
+
+		int scene = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(scene, LoadSceneMode.Single);
+	}
+
 }

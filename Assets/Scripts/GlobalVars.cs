@@ -1,20 +1,20 @@
-﻿using UnityEngine;
-
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GlobalVars : MonoBehaviour {
+	[HideInInspector] public GameObject[] getTargets;
+	[HideInInspector] public int targetCount;
+	// Use this for initialization
+	void Start () {
+		getTargets = GameObject.FindGameObjectsWithTag ("Target");
+		targetCount = getTargets.Length;
+		print("Init: " + targetCount);
+	}
+	
+	// Update is called once per frame
+	void Update () {
 
-	public static GlobalVars Instance { get; set; }
-
-	public bool _enable = true;  // Stops player from firing while paused
-	public float time = 120.0f; // Amount of time to complete level
-
-	void Awake(){
-		if (Instance == null) {
-			Instance = this;
-			DontDestroyOnLoad (gameObject);
-		} else {
-			Destroy (gameObject);
-		}
 	}
 
 }

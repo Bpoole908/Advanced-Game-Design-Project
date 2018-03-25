@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Timer : MonoBehaviour {
-	private float time;
+	public float time;
 	// Use this for initialization
 	void Start () {
-		time = GlobalVars.Instance.time;
+		time = 60;
 	}
 	
 	// Update is called once per frame
@@ -14,6 +15,8 @@ public class Timer : MonoBehaviour {
 		time -= Time.deltaTime;
 		if (time <= 0) {
 			time = 0;
+			int scene = SceneManager.GetActiveScene().buildIndex;
+			SceneManager.LoadScene(scene, LoadSceneMode.Single);
 		}
 	}
 
