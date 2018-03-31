@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour {
 				DestroyObject(hit.transform.gameObject);
 				target.getTargets = GameObject.FindGameObjectsWithTag ("Target");
 				target.targetCount = target.getTargets.Length;
-				//print ("Fake Count: " + target.targetCount);
+				target.countText.text = (target.targetCount - 1).ToString ();
 
 			}
 			GameObject impact = Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));

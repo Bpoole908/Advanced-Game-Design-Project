@@ -34,16 +34,17 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 	}
-
+	// Death
 	void OnCollisionEnter(Collision collision){
 		if (collision.transform.tag == "Restart") {
 			int scene = SceneManager.GetActiveScene().buildIndex;
 			SceneManager.LoadScene(scene, LoadSceneMode.Single);
 		}
 
+		// Finish Level
 		// CHANGE to scene 2 or main menue
 		if (collision.transform.tag == "Finish" && target.targetCount == 1) {
-			StartCoroutine (ExecuteAfterTime (3));
+			StartCoroutine (ExecuteAfterTime (1));
 		}
 	}
 	 //Detect if you on the ground to jump
@@ -64,7 +65,6 @@ public class Character_Controller : MonoBehaviour {
 
 	IEnumerator ExecuteAfterTime(float time){
 		yield return new WaitForSeconds (time);
-
 		int scene = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 	}

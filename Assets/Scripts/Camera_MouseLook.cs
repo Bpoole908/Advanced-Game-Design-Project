@@ -10,11 +10,13 @@ public class Camera_MouseLook : MonoBehaviour {
 
 	public float sensitivity = 5.0f;
 	public float smoothing = 2.0f;
+	private int start = 0;
 
 	// Use this for initialization
 	void Start () {
 		character = this.transform.parent.gameObject; // character init
 		cam_trans = this.transform;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
