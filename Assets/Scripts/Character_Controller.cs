@@ -65,7 +65,13 @@ public class Character_Controller : MonoBehaviour {
 
 	IEnumerator ExecuteAfterTime(float time){
 		yield return new WaitForSeconds (time);
-		int scene = SceneManager.GetActiveScene().buildIndex;
+		int scene = SceneManager.GetActiveScene ().buildIndex;
+		print (scene);
+		if (scene < 1) {
+			scene += 1;
+		} else {
+			//return to main menu
+		}
 		SceneManager.LoadScene(scene, LoadSceneMode.Single);
 	}
 
