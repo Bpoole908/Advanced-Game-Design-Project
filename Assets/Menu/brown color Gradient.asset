@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 2108210716, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: brown color Gradient
   m_EditorClassIdentifier: 
-  topLeft: {r: 0.53676474, g: 0.44617888, b: 0.33153117, a: 1}
-  topRight: {r: 0.5372549, g: 0.44705883, b: 0.33333334, a: 1}
-  bottomLeft: {r: 0.25, g: 0.14084685, b: 0.023897052, a: 1}
-  bottomRight: {r: 0.2509804, g: 0.14117648, b: 0.023529412, a: 1}
+  topLeft: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 1}
+  topRight: {r: 0.5661765, g: 0.5661765, b: 0.5661765, a: 1}
+  bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+  bottomRight: {r: 0.051470578, g: 0.04745107, b: 0.043144453, a: 1}
