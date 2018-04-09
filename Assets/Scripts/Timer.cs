@@ -21,6 +21,9 @@ public class Timer : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box(new Rect(10, 10, 50, 20), "" + time.ToString("0"));
+		GUIStyle text = new GUIStyle (GUI.skin.box);
+		text.fontSize = 50;
+			
+		GUI.Box(new Rect(20, 20, 100, 70), "" + time.ToString("0"), text);
 	}
 }

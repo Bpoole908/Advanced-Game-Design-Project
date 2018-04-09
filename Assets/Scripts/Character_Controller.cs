@@ -42,7 +42,6 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 		// Finish Level
-		// CHANGE to scene 2 or main menue
 		if (collision.transform.tag == "Finish" && target.targetCount == 1) {
 			StartCoroutine (ExecuteAfterTime (1));
 		}
@@ -66,13 +65,12 @@ public class Character_Controller : MonoBehaviour {
 	IEnumerator ExecuteAfterTime(float time){
 		yield return new WaitForSeconds (time);
 		int scene = SceneManager.GetActiveScene ().buildIndex;
-		print (scene);
-		if (scene < 1) {
+		if (scene < 2) {
 			scene += 1;
 		} else {
-			//return to main menu
+			SceneManager.LoadScene(0, LoadSceneMode.Single); // Retrun main menu on last level
 		}
-		SceneManager.LoadScene(scene, LoadSceneMode.Single);
+		SceneManager.LoadScene(scene, LoadSceneMode.Single); // Move to next level unless on last level
 	}
 
 }

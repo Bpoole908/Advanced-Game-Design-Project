@@ -29,7 +29,6 @@ public class Gun : MonoBehaviour {
 	void Shoot () {
 		RaycastHit hit;
 		if (Physics.Raycast (fpsCam.transform.position, fpsCam.transform.forward, out hit, range)) {
-			//print (hit.transform.name);
 			if (hit.transform.tag == "Target") {
 				DestroyObject(hit.transform.gameObject);
 				target.getTargets = GameObject.FindGameObjectsWithTag ("Target");

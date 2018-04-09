@@ -41,4 +41,12 @@ public class Pause_Game : MonoBehaviour {
 		Time.timeScale = 1;
 		Application.LoadLevel(Application.loadedLevel);
 	}
+
+	public void MainMenu(){
+		canvas.gameObject.SetActive (false);
+		PauseSingle.Instance._enable = true;
+		Cursor.lockState = CursorLockMode.None;
+		Time.timeScale = 1;
+		SceneManager.LoadScene(0, LoadSceneMode.Single);
+	}
 }
