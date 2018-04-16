@@ -68,10 +68,13 @@ public class Character_Controller : MonoBehaviour {
 	IEnumerator ExecuteAfterTime(float time){
 		yield return new WaitForSeconds (time);
 		int scene = SceneManager.GetActiveScene ().buildIndex;
+		print (SceneManager.GetActiveScene ());
 		if (scene < 2) {
 			scene += 1;
 		} else {
-			SceneManager.LoadScene(0, LoadSceneMode.Single); // Retrun main menu on last level
+			scene = 0;
+			Cursor.lockState = CursorLockMode.None;
+			SceneManager.LoadScene(scene, LoadSceneMode.Single); // Retrun main menu on last level
 		}
 		SceneManager.LoadScene(scene, LoadSceneMode.Single); // Move to next level unless on last level
 	}
