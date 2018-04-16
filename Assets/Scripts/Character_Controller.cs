@@ -6,7 +6,7 @@ using UnityEngine;
 public class Character_Controller : MonoBehaviour {
 	[HideInInspector] public GameObject controller;
 	[HideInInspector] public GlobalVars target;
-	public float speed = 10.0F;
+	[HideInInspector] public float speed = 13.0F;
 	public float jumpVelocity = 550.0f;
 	public float maxSlope = 60;
 	private bool grounded = false;
@@ -33,6 +33,7 @@ public class Character_Controller : MonoBehaviour {
 			rb.AddForce (0, jumpVelocity, 0);
 		}
 
+
 	}
 	// Death
 	void OnCollisionEnter(Collision collision){
@@ -42,7 +43,7 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 		// Finish Level
-		if (collision.transform.tag == "Finish" && target.targetCount == 1) {
+		if (collision.transform.tag == "Finish" && target.targetCount == 0) {
 			StartCoroutine (ExecuteAfterTime (1));
 		}
 	}
@@ -53,6 +54,7 @@ public class Character_Controller : MonoBehaviour {
 			if (Vector3.Angle(contact.normal, Vector3.up) < maxSlope){
 				print ("Can Jump");
 				grounded = true;
+				speed = 13.0f;
 			}
 		}
 	}
@@ -60,6 +62,7 @@ public class Character_Controller : MonoBehaviour {
 	void OnCollisionExit (Collision collision){
 		print("Can't Jump");
 		grounded = false;
+		speed = 15.0f;
 	}
 
 	IEnumerator ExecuteAfterTime(float time){
