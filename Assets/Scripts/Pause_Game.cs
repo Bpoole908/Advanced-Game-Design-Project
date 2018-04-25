@@ -25,10 +25,12 @@ public class Pause_Game : MonoBehaviour {
 				PauseSingle.Instance._enable = false;
 				Time.timeScale = 0;
 				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
 			} else {
 				canvas.gameObject.SetActive (false);
 				PauseSingle.Instance._enable = true;
 				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
 				Time.timeScale = 1;
 			}
 		}
@@ -38,6 +40,7 @@ public class Pause_Game : MonoBehaviour {
 		canvas.gameObject.SetActive (false);
 		PauseSingle.Instance._enable = true;
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		Time.timeScale = 1;
 		Application.LoadLevel(Application.loadedLevel);
 	}
@@ -46,6 +49,7 @@ public class Pause_Game : MonoBehaviour {
 		canvas.gameObject.SetActive (false);
 		PauseSingle.Instance._enable = true;
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		Time.timeScale = 1;
 		SceneManager.LoadScene(0, LoadSceneMode.Single);
 	}

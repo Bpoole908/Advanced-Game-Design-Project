@@ -15,6 +15,7 @@ public class Character_Controller : MonoBehaviour {
 	void Start () {
 		//Turns off cursor on screen and locks inside game window
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		rb = gameObject.GetComponent<Rigidbody> ();
 		controller = GameObject.Find ("GameController");
 		target = controller.GetComponent<GlobalVars> ();
@@ -74,6 +75,7 @@ public class Character_Controller : MonoBehaviour {
 		} else {
 			scene = 0;
 			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
 			SceneManager.LoadScene(scene, LoadSceneMode.Single); // Retrun main menu on last level
 		}
 		SceneManager.LoadScene(scene, LoadSceneMode.Single); // Move to next level unless on last level
