@@ -7,8 +7,8 @@ public class Character_Controller : MonoBehaviour {
 	[HideInInspector] public GameObject controller;
 	[HideInInspector] public GlobalVars target;
 	[HideInInspector] public float speed = 13.0F;
-	public float jumpVelocity = 550.0f;
-	public float maxSlope = 60;
+	public float jumpVelocity;
+	public float maxSlope;
 	private bool grounded = false;
 	Rigidbody rb;
 
@@ -52,17 +52,17 @@ public class Character_Controller : MonoBehaviour {
 		foreach (ContactPoint contact in collision.contacts){
 
 			if (Vector3.Angle(contact.normal, Vector3.up) < maxSlope){
-				print ("Can Jump");
+				//print ("Can Jump");
 				grounded = true;
-				speed = 13.0f;
+				speed = 12.0f;
 			}
 		}
 	}
 
 	void OnCollisionExit (Collision collision){
-		print("Can't Jump");
+		//print("Can't Jump");
 		grounded = false;
-		speed = 15.0f;
+		speed = 16.0f;
 	}
 
 	IEnumerator ExecuteAfterTime(float time){

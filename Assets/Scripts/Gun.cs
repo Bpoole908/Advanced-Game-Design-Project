@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour {
 	[HideInInspector] public GlobalVars target;
     AudioSource gunSound;
     AudioSource targetHit;
+	private float fire_rate;
+	private float next_fire;
 
 	// Use this for initialization
 	void Start () {
@@ -20,15 +22,18 @@ public class Gun : MonoBehaviour {
         AudioSource[] audios = GetComponents<AudioSource>();
         gunSound = audios[0];
         targetHit = audios[1];
+		fire_rate = .3f;
+		next_fire = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Fire1") && PauseSingle.Instance._enable) {
+		if (Input.GetButtonDown ("Fire1") && PauseSingle.Instance._enable && Time.time >= next_fire) {
 			MuzzleFalsh.Play ();
-            gunSound.Play();
+			gunSound.Play ();
 			Shoot ();
-		}
+			next_fire = Time.time + fire_rate;
+		} 
 		
 	}
 	void Shoot () {
